@@ -13,6 +13,8 @@ void setup() {
   Wire.onReceive(readRoborioMessage); 
   Serial.begin(9600);
   Serial.println("I got it!");
+  strip.begin();
+  strip.show();
 }
 
 void readRoborioMessage(int howMany) {
