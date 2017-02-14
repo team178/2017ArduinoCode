@@ -49,31 +49,5 @@ void loop() {
   setSubsystemLights(0, "red");
   strip.show();
   delay(500);
-  /*// put your main code here, to run repeatedly:
-  // 0 is red
-  //strip.setPixelColor(subsystem_start[0],255,0,0);
-  for (int x = subsystem_start[0]; x < subsystem_start[1]; x += 1){
-    strip.setPixelColor(x,255,0,0);
-  }
-  // 1 is green
-  //strip.setPixelColor(subsystem_start[1],0,255,0);
-  for (int x = subsystem_start[1]; x < subsystem_start[2]; x += 1){
-    strip.setPixelColor(x,0,255,0);
-  }
-  
-  // 2 is blue
-  //strip.setPixelColor(subsystem_start[2],0,0,255);
-  for (int x = subsystem_start[2] ; x < subsystem_end[2]+1; x += 1){
-    strip.setPixelColor(x,0,0,255);
-  }
-  
-  //show for 500ms
-  strip.show();
-  delay(500);
-  // 0 is green
-  // 1 is blue
-  // 2 is red
-  //show for 500ms
-  */
 
 }
