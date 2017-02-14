@@ -28,14 +28,45 @@ void readRoborioMessage(int howMany) {
   //go to Tools --> Serial Monitor or press Ctrl+Shift+M
 }
 
+void setSubsystemLights(int subsystem, String color){
+  for (int x = subsystem_start[subsystem]; x < subsystem_end[subsystem]+1; x+=1){
+    if (color == "green"){
+     strip.setPixelColor(x, 0,255,0); 
+    }
+    if (color == "red"){
+      strip.setPixelColor(x, 255,0,0);
+    }
+    if (color == "blue"){
+      strip.setPixelColor(x, 0, 0, 255);
+    }
+  }
+}
+
+
 void loop() {
-  // put your main code here, to run repeatedly:
+  setSubsystemLights(2, "green");
+  setSubsystemLights(1, "red");
+  setSubsystemLights(0, "red");
+  strip.show();
+  delay(500);
+  /*// put your main code here, to run repeatedly:
   // 0 is red
-  strip.setPixelColor(subsystem_start[0],0,255,0,0);
+  //strip.setPixelColor(subsystem_start[0],255,0,0);
+  for (int x = subsystem_start[0]; x < subsystem_start[1]; x += 1){
+    strip.setPixelColor(x,255,0,0);
+  }
   // 1 is green
-  strip.setPixelColor(subsystem_start[1],0,255,0);
+  //strip.setPixelColor(subsystem_start[1],0,255,0);
+  for (int x = subsystem_start[1]; x < subsystem_start[2]; x += 1){
+    strip.setPixelColor(x,0,255,0);
+  }
+  
   // 2 is blue
-  strip.setPixelColor(subsystem_start[2],0,0,255);
+  //strip.setPixelColor(subsystem_start[2],0,0,255);
+  for (int x = subsystem_start[2] ; x < subsystem_end[2]+1; x += 1){
+    strip.setPixelColor(x,0,0,255);
+  }
+  
   //show for 500ms
   strip.show();
   delay(500);
@@ -43,6 +74,6 @@ void loop() {
   // 1 is blue
   // 2 is red
   //show for 500ms
-  
+  */
 
 }
