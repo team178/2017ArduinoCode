@@ -51,12 +51,30 @@ void setSubsystemLights(int subsystem, String color){
 
     }
     else if(color == "Rainbow"){
+      //red
+      if (x%6 == 0) {
       strip.setPixelColor(x,255,0,0);
+      }
+      //orange
+      if (x%6 == 1) {
       strip.setPixelColor(x,255,165,0);
+      }
+      //yellow
+      if (x%6 == 2) {
       strip.setPixelColor(x,255,255,0);
+      }
+      //green
+      if (x%6 == 3) {
       strip.setPixelColor(x,0,255,0);
+      }
+      //blue
+      if (x%6 == 4) {
       strip.setPixelColor(x,0,0,255);
+      }
+      //purple
+      if (x%6 == 5) {
       strip.setPixelColor(x,255,0,255);
+      }
     }
   }
 }
@@ -65,7 +83,7 @@ void setSubsystemLights(int subsystem, String color){
 void loop() {
   setSubsystemLights(2, "green");
   setSubsystemLights(1, "red");
-  setSubsystemLights(0, "Enforcers");
+  setSubsystemLights(0, "Rainbow");
   strip.show();
   delay(500);
   i++;
