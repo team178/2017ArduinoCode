@@ -50,6 +50,14 @@ void setSubsystemLights(int subsystem, String color){
       }
 
     }
+    else if(color == "Rainbow"){
+      strip.setPixelColor(x,255,0,0);
+      strip.setPixelColor(x,255,165,0);
+      strip.setPixelColor(x,255,255,0);
+      strip.setPixelColor(x,0,255,0);
+      strip.setPixelColor(x,0,0,255);
+      strip.setPixelColor(x,255,0,255);
+    }
   }
 }
 
