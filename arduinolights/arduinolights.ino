@@ -8,7 +8,6 @@ int subsystem_end[3] = {11,23,35};
 int i = 0;
 
 
-
 void setup() {
   
   // put your setup code here, to run once:
@@ -33,25 +32,43 @@ void readRoborioMessage(int howMany) {
 
 void setSubsystemLights(int subsystem, String color){
   for (int x = subsystem_start[subsystem]; x < subsystem_end[subsystem]+1; x+=1){
+    
     if (color == "green"){
      strip.setPixelColor(x, 0,255,0); 
     }
+    
     else if (color == "red"){
       strip.setPixelColor(x, 255,0,0);
     }
+    
     else if (color == "blue"){
       strip.setPixelColor(x, 0, 0, 255);
     }
+    
     else if (color == "Enforcers"){
-      if ((x%2 == 1 && i%2 == 1) || (x%2 == 0 && i%2 == 0)) {
+      if ((x%2 == 0 && i%2 == 0) || (x%2 == 1 && i%2 == 1)) {
         strip.setPixelColor(x, 229, 187, 0);
       }
       else if ((x%2 == 1 && i%2 == 0) || (x%2 == 0 && i%2 == 1)){
         strip.setPixelColor(x, 7, 16, 79);
       }
-
     }
-    else if(color == "Rainbow"){
+
+      
+    else if (color == "Ocean"){
+      
+      if ((x%3 == 0 && i%3 == 0) || (x%3 == 1 && i%3 == 1) || (x%3 == 2 && i%3 == 2)){
+        strip.setPixelColor(x, 0, 0, 255);
+      }
+      else if ((x%3 == 0 && i%3 == 1) || (x%3 == 1 && i%3 == 2) || (x%3 == 2 && i%3 == 0)){
+        strip.setPixelColor(x, 0, 200, 255);
+      }
+      else if ((x%3 == 0 && i%3 == 2) || (x%3 == 1 && i%3 == 0) || (x%3 == 2 && i%3 == 1)){
+        strip.setPixelColor(x, 0, 0, 128);
+      }
+    }
+    
+   else if(color == "Rainbow"){
       //red
       if ((x%6 == 0 && i%6 == 0) || (x%6 == 1 && i%6 == 1)||(x%6 == 2 && i%6 == 2)|| (x%6 == 3 && i%6 == 3)||(x%6 == 4 && i%6 == 4)|| (x%6 == 5 && i%6 == 5)) {
       strip.setPixelColor(x,255,0,0);
@@ -76,15 +93,14 @@ void setSubsystemLights(int subsystem, String color){
       if ((x%6 == 0 && i%6 == 1) || (x%6 == 1 && i%6 == 2)||(x%6 == 2 && i%6 == 3)|| (x%6 == 3 && i%6 == 4)||(x%6 == 4 && i%6 == 5)|| (x%6 == 5 && i%6 == 0)) {
       strip.setPixelColor(x,255,0,255);
       }
+     } 
     }
   }
-}
-
 
 void loop() {
-  setSubsystemLights(2, "Rainbow");
-  setSubsystemLights(1, "Rainbow");
-  setSubsystemLights(0, "Rainbow");
+  setSubsystemLights(2, "blue");
+  setSubsystemLights(1, "red");
+  setSubsystemLights(0, "Ocean");
   strip.show();
   delay(500);
   i++;
