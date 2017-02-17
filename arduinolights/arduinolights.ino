@@ -3,6 +3,8 @@
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_GRB + NEO_KHZ800);
 
 String myWord = "Blue Alliance";
+int sub;
+String pat;
 int subsystem_start[3]={0,12,24};
 int subsystem_end[3] = {11,23,35};
 int i = 0;
@@ -25,8 +27,11 @@ void readRoborioMessage(int howMany) {
     char c = Wire.read();
     myWord = myWord + c;
   }
-  Serial.println("hello");
-  Serial.println(myWord);
+  sub = myWord.substring(0,1).toInt();
+  pat = myWord.substring(1);
+  Serial.println(sub);
+  Serial.println(pat);
+  
   //go to Tools --> Serial Monitor or press Ctrl+Shift+M
 }
 
@@ -98,10 +103,8 @@ void setSubsystemLights(int subsystem, String color){
   }
 
 void loop() {
-  setSubsystemLights(2, "blue");
-  setSubsystemLights(1, "red");
-  setSubsystemLights(0, "Ocean");
+  setSubsystemLights(sub, pat);
   strip.show();
-  delay(500);
+  delay(100);
   i++;
 }
