@@ -3,11 +3,10 @@
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_GRB + NEO_KHZ800);
 
 String myWord = "Blue Alliance";
-int sub;
-String pat;
-int subsystem_start[3]={0,12,24};
-int subsystem_end[3] = {11,23,35};
+int subsystem_start[4] = {0,9,18,27};
+int subsystem_end[4] = {8,17,26,35};
 int i = 0;
+String mode[4]={"off", "off", "off", "off"};
 
 
 void setup() {
@@ -27,15 +26,17 @@ void readRoborioMessage(int howMany) {
     char c = Wire.read();
     myWord = myWord + c;
   }
+  int sub;
+  String pat;
   sub = myWord.substring(0,1).toInt();
   pat = myWord.substring(1);
-  Serial.println(sub);
-  Serial.println(pat);
+  mode[sub] = pat;
+  Serial.println(mode[sub]);
   
   //go to Tools --> Serial Monitor or press Ctrl+Shift+M
 }
 
-void setSubsystemLights(int subsystem, String color){
+void runSubsystemLights(int subsystem, String color){
   for (int x = subsystem_start[subsystem]; x < subsystem_end[subsystem]+1; x+=1){
     
     if (color == "green"){
@@ -58,7 +59,10 @@ void setSubsystemLights(int subsystem, String color){
         strip.setPixelColor(x, 7, 16, 79);
       }
     }
-
+    
+    else if (color == "off"){
+      strip.setPixelColor(x,0,0,0);
+    }
       
     else if (color == "Ocean"){
       
@@ -70,6 +74,19 @@ void setSubsystemLights(int subsystem, String color){
       }
       else if ((x%3 == 0 && i%3 == 2) || (x%3 == 1 && i%3 == 0) || (x%3 == 2 && i%3 == 1)){
         strip.setPixelColor(x, 0, 0, 128);
+      }
+    }
+
+    else if (color == "Fire"){
+      
+      if ((x%3 == 0 && i%3 == 0) || (x%3 == 1 && i%3 == 1) || (x%3 == 2 && i%3 == 2)){
+        strip.setPixelColor(x, 255,11,0);
+      }
+      else if ((x%3 == 0 && i%3 == 1) || (x%3 == 1 && i%3 == 2) || (x%3 == 2 && i%3 == 0)){
+        strip.setPixelColor(x, 255,44,0);
+      }
+      else if ((x%3 == 0 && i%3 == 2) || (x%3 == 1 && i%3 == 0) || (x%3 == 2 && i%3 == 1)){
+        strip.setPixelColor(x, 255,69,0);
       }
     }
     
@@ -103,7 +120,10 @@ void setSubsystemLights(int subsystem, String color){
   }
 
 void loop() {
-  setSubsystemLights(sub, pat);
+  runSubsystemLights(0, mode[0]);
+  runSubsystemLights(1, mode[1]);
+  runSubsystemLights(2, mode[2]);
+  runSubsystemLights(3, mode[3]);
   strip.show();
   delay(100);
   i++;
