@@ -3,11 +3,13 @@
 /*THIS IS THE VERSION :D*/
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_GRB + NEO_KHZ800);
 
+#define subnum 4
+
 String myWord = "Blue Alliance";
-int subsystem_start[4] = {0,9,18,27};
-int subsystem_end[4] = {8,17,26,35};
+int subsystem_start[subnum] = {0,9,18,27};
+int subsystem_end[subnum] = {8,17,26,35};
 int i = 0;
-String mode[4]={"off", "off", "off", "off"};
+String mode[subnum]={"off", "off", "off", "off"};
 
 
 void setup() {
@@ -121,10 +123,10 @@ void runSubsystemLights(int subsystem, String color){
   }
 
 void loop() {
-  runSubsystemLights(0, mode[0]);
-  runSubsystemLights(1, mode[1]);
+  runSubsystemLights(subnum, mode[subnum]);
+  /*runSubsystemLights(1, mode[1]);
   runSubsystemLights(2, mode[2]);
-  runSubsystemLights(3, mode[3]);
+  runSubsystemLights(3, mode[3]);*/
   strip.show();
   delay(100);
   i++;
