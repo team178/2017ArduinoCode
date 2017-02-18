@@ -9,7 +9,9 @@ String myWord = "Blue Alliance";
 int subsystem_start[subnum] = {0,9,18,27};
 int subsystem_end[subnum] = {8,17,26,35};
 int i = 0;
+int s = 0;
 String mode[subnum]={"off", "off", "off", "off"};
+//number of "off"'s should equal subnum
 
 
 void setup() {
@@ -34,7 +36,7 @@ void readRoborioMessage(int howMany) {
   sub = myWord.substring(0,1).toInt();
   pat = myWord.substring(1);
   mode[sub] = pat;
-  Serial.println(mode[sub]);
+  //Serial.println(mode[sub]);
   
   //go to Tools --> Serial Monitor or press Ctrl+Shift+M
 }
@@ -123,10 +125,9 @@ void runSubsystemLights(int subsystem, String color){
   }
 
 void loop() {
-  runSubsystemLights(subnum, mode[subnum]);
-  /*runSubsystemLights(1, mode[1]);
-  runSubsystemLights(2, mode[2]);
-  runSubsystemLights(3, mode[3]);*/
+  for (int s = 0; s < subnum; s++){
+    runSubsystemLights(s, mode[s]);
+  }
   strip.show();
   delay(100);
   i++;
