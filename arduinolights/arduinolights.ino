@@ -1,5 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #include <Wire.h>
+/*THIS IS THE VERSION :D*/
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_GRB + NEO_KHZ800);
 
 String myWord = "Blue Alliance";
@@ -51,7 +52,7 @@ void runSubsystemLights(int subsystem, String color){
       strip.setPixelColor(x, 0, 0, 255);
     }
     
-    else if (color == "Enforcers"){
+    else if (color == "enforcers"){
       if ((x%2 == 0 && i%2 == 0) || (x%2 == 1 && i%2 == 1)) {
         strip.setPixelColor(x, 229, 187, 0);
       }
@@ -64,7 +65,7 @@ void runSubsystemLights(int subsystem, String color){
       strip.setPixelColor(x,0,0,0);
     }
       
-    else if (color == "Ocean"){
+    else if (color == "ocean"){
       
       if ((x%3 == 0 && i%3 == 0) || (x%3 == 1 && i%3 == 1) || (x%3 == 2 && i%3 == 2)){
         strip.setPixelColor(x, 0, 0, 255);
@@ -77,7 +78,7 @@ void runSubsystemLights(int subsystem, String color){
       }
     }
 
-    else if (color == "Fire"){
+    else if (color == "fire"){
       
       if ((x%3 == 0 && i%3 == 0) || (x%3 == 1 && i%3 == 1) || (x%3 == 2 && i%3 == 2)){
         strip.setPixelColor(x, 255,11,0);
@@ -90,7 +91,7 @@ void runSubsystemLights(int subsystem, String color){
       }
     }
     
-   else if(color == "Rainbow"){
+   else if(color == "rainbow"){
       //red
       if ((x%6 == 0 && i%6 == 0) || (x%6 == 1 && i%6 == 1)||(x%6 == 2 && i%6 == 2)|| (x%6 == 3 && i%6 == 3)||(x%6 == 4 && i%6 == 4)|| (x%6 == 5 && i%6 == 5)) {
       strip.setPixelColor(x,255,0,0);
