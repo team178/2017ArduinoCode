@@ -10,13 +10,15 @@ int subsystem_start[subnum] = {0,9,18,27};
 int subsystem_end[subnum] = {8,17,26,35};
 int i = 0;
 int s = 0;
-String mode[subnum]={"off", "off", "off", "off"};
-//number of "off"'s should equal subnum
+String mode[subnum];
 
 
 void setup() {
   
   // put your setup code here, to run once:
+  for (int e = 0; e <= subnum; e++){
+    mode[e] = "off";
+  }
  Wire.begin(8);               
   Wire.onReceive(readRoborioMessage); 
   Serial.begin(9600);
