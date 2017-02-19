@@ -39,7 +39,7 @@ void readRoborioMessage(int howMany) {
   sub = myWord.substring(0,1).toInt();
   pat = myWord.substring(1);
   mode[sub] = pat;
-  //Serial.println(mode[sub]);
+  Serial.println(mode[sub]);
   
   //go to Tools --> Serial Monitor or press Ctrl+Shift+M
 }
