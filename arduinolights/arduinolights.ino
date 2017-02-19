@@ -11,6 +11,7 @@ int subsystem_end[subnum] = {8,17,26,35};
 int i = 0;
 int s = 0;
 String mode[subnum];
+//hello
 
 
 void setup() {
