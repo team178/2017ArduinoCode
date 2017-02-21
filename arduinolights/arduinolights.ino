@@ -1,13 +1,13 @@
 #include <Adafruit_NeoPixel.h>
 #include <Wire.h>
 /*THIS IS THE VERSION :D*/
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_BRG + NEO_KHZ800);
 
 #define subnum 4
 
 String myWord = "Blue Alliance";
-int subsystem_start[subnum] = {0,9,18,27};
-int subsystem_end[subnum] = {8,17,26,35};
+int subsystem_start[subnum] = {0,8,11,14};
+int subsystem_end[subnum] = {7,10,13,21};
 int i = 0;
 int s = 0;
 String mode[subnum];
@@ -59,19 +59,69 @@ void runSubsystemLights(int subsystem, String color){
       strip.setPixelColor(x, 0, 0, 255);
     }
     
+    else if (color == "orange"){
+      strip.setPixelColor(x, 255,40,0);
+    }
+    
     else if (color == "enforcers"){
       if ((x%2 == 0 && i%2 == 0) || (x%2 == 1 && i%2 == 1)) {
-        strip.setPixelColor(x, 229, 187, 0);
+        strip.setPixelColor(x, 255,100, 0);
       }
       else if ((x%2 == 1 && i%2 == 0) || (x%2 == 0 && i%2 == 1)){
         strip.setPixelColor(x, 7, 16, 79);
       }
     }
+
+    else if (color == "yellow"){
+      strip.setPixelColor(x, 255,100,0);
+    }
     
     else if (color == "off"){
       strip.setPixelColor(x,0,0,0);
     }
-      
+
+    else if (color == "red shot"){
+        int p = i%(subsystem_end[subsystem]+1);
+       if (p == 0) {
+        for (int l = 0; l < (subsystem_end[subsystem]+1); l++) {
+          strip.setPixelColor(l, 0,0,0);
+        }
+        strip.setPixelColor(p, 255,0, 0);
+        }
+    else {
+       strip.setPixelColor(p, 255,0, 0);
+        strip.setPixelColor(p-1, 0,0,0);
+    }
+    }
+
+    else if (color == "blue shot"){
+        int p = i%(subsystem_end[subsystem]+1);
+       if (p == 0) {
+        for (int l = 0; l < (subsystem_end[subsystem]+1); l++) {
+          strip.setPixelColor(l, 0,0,0);
+        }
+        strip.setPixelColor(p, 0 ,0, 255);
+        }
+    else {
+       strip.setPixelColor(p, 0 ,0, 255);
+        strip.setPixelColor(p-1, 0,0,0);
+    }
+    }
+
+    else if (color == "enforcers shot"){
+        int p = i%(subsystem_end[subsystem]+1);
+       if (p == 0) {
+        for (int l = 0; l < (subsystem_end[subsystem]+1); l++) {
+          strip.setPixelColor(l, 7, 16, 79);
+        }
+        strip.setPixelColor(p, 255,100, 0);
+        }
+    else {
+       strip.setPixelColor(p, 255,100, 0);
+        strip.setPixelColor(p-1, 7, 16, 79);
+    }
+    }
+        
     else if (color == "ocean"){
       
       if ((x%3 == 0 && i%3 == 0) || (x%3 == 1 && i%3 == 1) || (x%3 == 2 && i%3 == 2)){
@@ -95,6 +145,18 @@ void runSubsystemLights(int subsystem, String color){
       }
       else if ((x%3 == 0 && i%3 == 2) || (x%3 == 1 && i%3 == 0) || (x%3 == 2 && i%3 == 1)){
         strip.setPixelColor(x, 255,69,0);
+      }
+    }
+
+    else if (color == "seaweed"){
+      if ((x%3 == 0 && i%3 == 0) || (x%3 == 1 && i%3 == 1) || (x%3 == 2 && i%3 == 2)){
+        strip.setPixelColor(x, 0,255,0);
+      }
+      else if ((x%3 == 0 && i%3 == 1) || (x%3 == 1 && i%3 == 2) || (x%3 == 2 && i%3 == 0)){
+        strip.setPixelColor(x, 0,100,0);
+      }
+      else if ((x%3 == 0 && i%3 == 2) || (x%3 == 1 && i%3 == 0) || (x%3 == 2 && i%3 == 1)){
+        strip.setPixelColor(x, 100,255,0);
       }
     }
     
