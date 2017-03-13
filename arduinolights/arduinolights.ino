@@ -3,11 +3,11 @@
 /*THIS IS THE VERSION :D*/
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_BRG + NEO_KHZ800);
 
-#define subnum 4
+#define subnum 3
 
 String myWord = "Blue Alliance";
-int subsystem_start[subnum] = {0,8,11,14};
-int subsystem_end[subnum] = {7,10,13,21};
+int subsystem_start[subnum] = {0,0,28};
+int subsystem_end[subnum] = {55,27,55};
 int i = 0;
 int s = 0;
 String mode[subnum];
