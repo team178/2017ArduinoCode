@@ -1,11 +1,15 @@
 #include <Adafruit_NeoPixel.h>
 #include <Wire.h>
 /*THIS IS THE VERSION :D*/
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_BRG + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_GRB + NEO_KHZ800);
 
 #define subnum 3
 
 String myWord = "Blue Alliance";
+/*test bot
+int subsystem_start[subnum] = {0,0,11};
+int subsystem_end[subnum] = {21,10,21};*/
+//real robot
 int subsystem_start[subnum] = {0,0,28};
 int subsystem_end[subnum] = {55,27,55};
 int i = 0;
@@ -18,10 +22,10 @@ void setup() {
   
   // put your setup code here, to run once:
   for (int e = 0; e <= subnum; e++){
-    mode[e] = "off";
+    mode[e] = "off"; 
   }
- Wire.begin(8);               
-  Wire.onReceive(readRoborioMessage); 
+  Wire.begin(8);               
+  Wire.onReceive(readRoborioMessage);
   Serial.begin(9600);
   Serial.println("I got it!");
   strip.begin();
@@ -44,10 +48,26 @@ void readRoborioMessage(int howMany) {
   //go to Tools --> Serial Monitor or press Ctrl+Shift+M
 }
 
+int numSeconds = 2;
+int endCountdown = 0; 
+
 void runSubsystemLights(int subsystem, String color){
   for (int x = subsystem_start[subsystem]; x < subsystem_end[subsystem]+1; x+=1){
+    if (color == "countdown"){
+
+      if(endCountdown <= i) {
+        endCountdown = i + numSeconds*10;
+      }
+      int startCountdown = endCountdown - numSeconds*10;
+       if (x <= subsystem_start[subsystem]+(i-startCountdown)){
+         strip.setPixelColor(x,255,0,255);
+       }
+       else{
+         strip.setPixelColor(x,0,0,0);
+        }
+    }
     
-    if (color == "green"){
+    else if (color == "green"){
      strip.setPixelColor(x, 0,255,0); 
     }
     
@@ -109,17 +129,17 @@ void runSubsystemLights(int subsystem, String color){
     }
 
     else if (color == "enforcers shot"){
-        int p = i%(subsystem_end[subsystem]+1);
-       if (p == 0) {
+      int p = i%(subsystem_end[subsystem]+1);
+      /*if (p == 0) {
         for (int l = 0; l < (subsystem_end[subsystem]+1); l++) {
           strip.setPixelColor(l, 7, 16, 79);
         }
         strip.setPixelColor(p, 255,100, 0);
-        }
-    else {
-       strip.setPixelColor(p, 255,100, 0);
+      }*/
+      //else {
+        strip.setPixelColor(p, 255,100, 0);
         strip.setPixelColor(p-1, 7, 16, 79);
-    }
+      //}
     }
         
     else if (color == "ocean"){
@@ -148,15 +168,15 @@ void runSubsystemLights(int subsystem, String color){
       }
     }
 
-    else if (color == "seaweed"){
+    else if (color == "gold"){
       if ((x%3 == 0 && i%3 == 0) || (x%3 == 1 && i%3 == 1) || (x%3 == 2 && i%3 == 2)){
-        strip.setPixelColor(x, 0,255,0);
+        strip.setPixelColor(x, 186,50,0);
       }
       else if ((x%3 == 0 && i%3 == 1) || (x%3 == 1 && i%3 == 2) || (x%3 == 2 && i%3 == 0)){
-        strip.setPixelColor(x, 0,100,0);
+        strip.setPixelColor(x, 204,70,0);
       }
       else if ((x%3 == 0 && i%3 == 2) || (x%3 == 1 && i%3 == 0) || (x%3 == 2 && i%3 == 1)){
-        strip.setPixelColor(x, 100,255,0);
+        strip.setPixelColor(x, 237,100,0);
       }
     }
     
