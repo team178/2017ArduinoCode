@@ -1,4 +1,0 @@
-#include <Adafruit_NeoPixel.h>
-#include <Wire.h>
-
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(36, 3, NEO_GRB + NEO_KHZ800);
